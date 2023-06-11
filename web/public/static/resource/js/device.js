@@ -19,8 +19,8 @@ define(['table','form'], function (Table,Form) {
             Table.render({
                 elem: '#' + Table.init.table_elem,
                 id: Table.init.tableId,
-                //url: Fun.url(Table.init.requests.index_url),
-				url: Fun.url('resource/Device/hello'),
+                url: Fun.url(Table.init.requests.index_url),
+				
                 init: Table.init,
                 primaryKey:'id',
                 toolbar: ['refresh','add','destroy','import','export'],

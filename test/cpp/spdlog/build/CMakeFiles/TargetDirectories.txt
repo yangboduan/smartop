@@ -1,0 +1,4 @@
+/data/git/smartop/test/cpp/spdlog/build/CMakeFiles/app.dir
+/data/git/smartop/test/cpp/spdlog/build/CMakeFiles/spdlog.dir
+/data/git/smartop/test/cpp/spdlog/build/CMakeFiles/edit_cache.dir
+/data/git/smartop/test/cpp/spdlog/build/CMakeFiles/rebuild_cache.dir

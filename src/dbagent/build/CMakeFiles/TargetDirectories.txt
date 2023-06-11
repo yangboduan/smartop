@@ -1,0 +1,4 @@
+/data/git/smartop/src/dbagent/build/CMakeFiles/dbagent.dir
+/data/git/smartop/src/dbagent/build/CMakeFiles/spdlog.dir
+/data/git/smartop/src/dbagent/build/CMakeFiles/edit_cache.dir
+/data/git/smartop/src/dbagent/build/CMakeFiles/rebuild_cache.dir

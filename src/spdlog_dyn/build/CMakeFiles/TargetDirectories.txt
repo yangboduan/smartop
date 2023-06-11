@@ -1,0 +1,4 @@
+/data/git/smartop/src/spdlog_dyn/build/CMakeFiles/app.dir
+/data/git/smartop/src/spdlog_dyn/build/CMakeFiles/spdlog.dir
+/data/git/smartop/src/spdlog_dyn/build/CMakeFiles/edit_cache.dir
+/data/git/smartop/src/spdlog_dyn/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-11/root/usr/bin/c++ -rdynamic CMakeFiles/dbagent.dir/main.cc.o -o dbagent   -L/data/git/smartop/src/dbagent/../libs/libzdb  -Wl,-rpath,/data/git/smartop/src/dbagent/../libs/libzdb:/data/git/smartop/src/dbagent/build -lzdb libspdlog.so -lrt -lpthread 
