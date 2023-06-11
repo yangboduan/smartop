@@ -1,0 +1,237 @@
+<style>
+    body {
+        padding:30px!important;
+    }
+    .layui-form-label {
+    float: none;
+    padding: 0;
+    display: inline-block;
+    width: auto;
+    text-align: left;margin-left: 5px;
+}
+
+.layui-form-item .layui-input-block {
+    margin: 0 auto;
+}
+
+.layui-form-item .required::after {
+    content: "*";
+    color: red;
+    position: absolute;
+    margin-left: 4px;
+    font-weight: bold;
+    line-height: 0.8em;
+    top: 6px;
+    right: -8px;
+}
+
+.layui-elem-quote {
+    line-height: .6;
+    border-left: 5px solid #1890ff;
+    color: #1890ff;
+    padding: 10px;
+}
+
+.block {
+    display: -webkit-box;
+    display: flow-root;
+}
+</style>
+<div class="layui-tab">
+    <ul class="layui-tab-title">
+        <li class="layui-this">CURD</li>
+        <li>菜单</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-row">
+                <form class="layui-form" lay-filter="form">
+                    <blockquote class="layui-elem-quote">{:lang('Base')}</blockquote>
+                    <div class="block">
+                        <div class="layui-col-sm3">
+                            {:form_select('driver',
+                            $driver, ['verify'=>'required','filter'=>'driver','label'=>'driver', 'tips'=>'数据库驱动']
+                            ,[],'mysql')}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_input('app','text',['label'=>"app",'tips'=>'默认生成到backend目录，填写app名字则生成到app目录下面'])}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_input('addon','text',['label'=>"addons name",'tips'=>'插件目录名，如果填写则生成到addons目录下面'])}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_input('menuname','text',['label'=>"菜单名称",'tips'=>'菜单名称,不填则默认为控制器名或app名'])}
+                        </div>
+                    </div>
+                    <blockquote class="layui-elem-quote">{:lang('MainTable')}</blockquote>
+                    <div class="block">
+                        <div class="layui-col-sm3">
+                            {:form_select('table',$table,['verify'=>'required','filter'=>'table','class'=>'table','tips'=>'MainTable','label'=>"MainTable"])}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_input('controller','text',['label'=>"Controller",'tips'=>'default tableName'])}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_input('model','text',['label'=>"Modelname", 'tips'=>'default tableName'])}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_select('fields',[],['class'=>' fields','label'=>"Fields",'multiple'=>1, 'tips'=>'visible field'])}
+                        </div>
+                    </div>
+                    <blockquote class="layui-elem-quote">
+                        <input type="button" value="{:lang('addRel')}" class="addRelation layui-btn layui-btn-xs layui-bg-blue">
+                    </blockquote>
+                    <div class="block">
+                        <div style="display:block">
+
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col class="layui-col-xs-2">
+                                    <col class="layui-col-xs-2">
+                                    <col class="layui-col-xs-2">
+                                    <col class="layui-col-xs-2">
+                                    <col class="layui-col-xs-2">
+                                    <col class="layui-col-xs-2">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th class="required">{:lang('relTable')}</th>
+                                    <th class="required">{:lang('relType')}</th>
+                                    <th class="required">{:lang('selectField')}</th>
+                                    <th class="required">{:lang('relForField')}</th>
+                                    <th class="required">{:lang('relPriField')}</th>
+                                    <th class="required">{:lang('oprate')}</th>
+                                </tr>
+                                </thead>
+                                <tbody id="relTab">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="margin-top:20px;">
+
+                    </div>
+                    <blockquote class="layui-elem-quote">{:lang('Other Setting')}</blockquote>
+                    <div class="block">
+                        <div class="layui-col-sm3">
+                            {:form_input('ignoreFields','text',['label'=>"ignoreFields",'tips'=>'Ignore fields separated by commas'])}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_select('method',
+                            ['index'=>'index',
+                            'add'=>'add',
+                            'edit'=>'edit',
+                            'destroy'=>'destroy',
+                            'delete'=>'delete',
+                            'deleteAll'=>'deleteAll',
+                            'import'=>'import',
+                            'export'=>'export',
+                            'recycle'=>'recycle',
+                            'restore'=>'restore',
+                           ],
+                            ['label'=>'method','multiple'=>1,'search'=>1,
+                            'tips'=>'不选代表默认全部'])}
+                        </div>
+                        <div class="layui-col-sm3">
+                            {:form_input('limit','text',['verify'=>'','label'=>"pageSize"],15)}
+                        </div>
+
+
+                    </div>
+                    <div class="block">
+                        <div class="layui-col-sm2">
+                            {:form_radio('menu',['no','yes'],['verify'=>'','label'=>'make menu'],1)}
+                        </div>
+                        <div class="layui-col-sm2">
+                            {:form_radio('page',['no','yes'],['verify'=>'','label'=>'isPage'],1)}
+                        </div>
+                        <div class="layui-col-sm2">
+                            {:form_radio('force',['no','yes'],['filter'=>'force','label'=>'force mode'],0)}
+                        </div>
+                        <div class="layui-col-sm2">
+                            {:form_radio('jump',['no','yes'],['verify'=>'','label'=>'jump file'],1)}
+                        </div>
+                        <div class="layui-col-sm2">
+                            {:form_radio('delete',['no','yes'],['filter'=>'delete','label'=>'delete mode'],0)}
+                        </div>
+                    </div>
+                    <input type="hidden" value="1" name="type">
+                    {:form_submitbtn(true,['show'=>1])}
+                </form>
+            </div>
+        </div>
+        <div class="layui-tab-item">
+            <div class="layui-row">
+                <form class="layui-form" lay-filter="form">
+                <div class="block">
+                    {:form_select('controllers',
+                    $controllerList,
+                    ['verify'=>'required','label'=>'controller', 'tips'=>'controller']
+                    ,[],'backend')}
+                </div>
+                    <div class="layui-col-sm3">
+                        {:form_radio('force',['no','yes'],['filter'=>'force','label'=>'force mode'],0)}
+                    </div>
+                    <div class="layui-col-sm3">
+                        {:form_radio('delete',['no','yes'],['filter'=>'delete','label'=>'delete mode'],0)}
+                    </div>
+                    <input type="hidden" value="2" name="type">
+                {:form_submitbtn(true,['show'=>1])}
+                </form>
+            </div>
+    </div>
+</div>
+
+
+<script>
+    var list = {:json_encode($list)};
+</script>
+<script type="text/html" id="tpl">
+    <tr id="relTab-{{d.index}}">
+        <td class="" >
+            <select name="joinTable[{{d.index}}]"
+                    id="joinTable-{{d.index}}"  lay-verify="required" lay-filter='jointable'
+                    class="layui-select jointable" lay-search>
+                <option value="">{:lang('Select')}</option>
+                {{#  layui.each(d.table, function(index, item){ }}
+                <option value="{{d.table[index]}}">{{d.table[index]}}</option>
+                {{# }) }}
+            </select>
+        </td>
+        <td class="">
+            <select name="joinMethod[{{d.index}}]"
+                    id="joinMethod-{{d.index}}"  lay-verify="required"
+                    class="layui-select " lay-search>
+                <option value="hasOne">hasOne</option>
+                <option value="belongsTo">belongsTo</option>
+            </select>
+        </td>
+        <td class="">
+            <select name="selectFields[{{d.index}}]"
+                    id="selectFields-{{d.index}}"  lay-verify="required"
+                    class="layui-select selectfields" lay-search>
+                    <option value="title">title</option>
+                    <option value="name">name</option>
+            </select>
+        </td>
+        <td class="">
+            <select name="joinForeignKey[{{d.index}}]"
+                    id="joinForeignKey-{{d.index}}"  lay-verify="required" value="title"
+                    class="layui-select joinforeignkey" lay-search>
+            </select>
+        </td>
+        <td class="">
+            <select name="joinPrimaryKey[{{d.index}}]"
+                    id="joinPrimaryKey-{{d.index}}"  lay-verify="required"
+                    class="layui-select joinprimarykey" lay-search>
+
+            </select>
+        </td>
+
+        <td class="">
+            <button type="button" id="relTab-delete-{{d.index}}"  class="layui-btn layui-btn-sm layui-btn-danger">
+                <i class="layui-icon"></i>
+            </button>
+        </td>
+    </tr>
+</script>

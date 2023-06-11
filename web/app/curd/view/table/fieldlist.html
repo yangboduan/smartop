@@ -1,0 +1,21 @@
+<blockquote class="layui-elem-quote">
+    枚举和集合类型，在长度上设置值 比如 monday,tusday,wednesday,thursday
+</blockquote>
+<table class="layui-table" id="list" lay-filter="list"
+       data-node-add="{:auth(addons_url('add'))}"
+       data-node-edit="{:auth(addons_url('edit'))}"
+       data-node-delete="{:auth(addons_url('delete'))}"
+       data-node-destroy="{:auth(addons_url('destroy'))}"
+       data-node-modify="{:auth(addons_url('modify'))}"
+       data-node-recyle="{:auth(addons_url('recyle'))}"
+       data-node-restore="{:auth(addons_url('index'))}"
+       data-node-import="{:auth(addons_url('import'))}"
+       data-node-export="{:auth(addons_url('export'))}"
+></table>
+<script>var typeList = {:json_encode($engineList)};
+var datatypeList = {:json_encode($datatypeList)};
+var indexList = {:json_encode($indexList)};
+var fieldList = {:json_encode($fieldList)};
+var id = "{$id}";
+</script>
+

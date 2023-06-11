@@ -1,0 +1,111 @@
+<form class="layui-form" lay-filter="form">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-col-md3">
+                {:form_input('TABLE_NAME', 'text', ['label' => 'Tablename', 'verify' => 'required','tips'=>'不需要表前缀'], '')}
+
+            </div>
+            <div class="layui-col-md3">
+                {:form_radio('ENGINE' ,$engineList, ['label' => 'Engine', 'verify' => 'required'], '2')}
+            </div>
+            <div class="layui-col-md3">
+                  {:form_input('TABLE_COMMENT', 'text', ['label' => 'Explain', 'verify' => 'required','tips'=>'表格备注'], '')}
+
+            </div>
+            <div class="layui-col-md3">
+                {:form_input('TABLE_COLLATION', 'text', ['label' => 'Collation', 'verify' => '','tips'=>'表格字符集'], 'utf8mb4_unicode_ci')}
+            </div>
+            {:form_submitbtn()}
+        </div>
+        <div class="layui-col-md12">
+            <blockquote class="layui-elem-quote">
+                字段管理 (注意默认会生成 create_time ，update_time ,delete_time 三个字段)
+            </blockquote>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="">
+                    <col width="">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>字段名</th>
+                    <th>字段类型</th>
+                    <th>是否必填</th>
+                    <th>长度或值</th>
+                    <th>默认值</th>
+                    <th>索引</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="">
+                    <td><input name="field[]" value="id" class="layui-input" type="text" ></td>
+                    <td>
+                        <select name="type[]"  lay-filter="type" lay-verify="required" lay-search>
+                            <option value="">{:lang('选择')}</option>
+                            {volist name="datatypeList" id="vo"}
+                                <option value="{$key}" {if $key=='int'}selected{/if}>{$vo}</option>
+                            {/volist}
+                        </select>
+                    </td>
+                    <td> <select name="require[]" value="1" lay-filter="require" lay-verify="" lay-search>
+                        <option value="">{:lang('选择')}</option>
+                        <option value="0" >否</option>
+                        <option value="1"  selected>是</option>
+                    </select>
+                    </td>
+                    <td><input name="length[]" class="layui-input" type="text" ></td></td>
+                    <td><input name="default[]" class="layui-input" type="text" ></td></td>
+                    <td><select name="index[]" value='PRI' lay-filter="index" lay-verify="" lay-search>
+                        <option value="">{:lang('选择')}</option>
+                        {volist name="indexList" id="vo"}
+                            <option value="{$key}" {if $key=='PRI'}selected{/if}>{$vo}({$key})</option>
+                        {/volist}
+                    </td>
+                    <td><input name="comment[]" VALUE="ID" class="layui-input" type="text" ></td>
+                    <td>
+                        <button class="layui-btn layui-btn-normal" lay-event="add">增加</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</form>
+
+<script type="text/html" id="trtpl">
+
+    <tr>
+        <td><input name="field[]" class="layui-input" type="text" ></td>
+        <td>
+            <select name="type[]" lay-filter="type" lay-verify="required" lay-search>
+                <option value="">{:lang('选择')}</option>
+                {volist name="datatypeList" id="vo"}
+                    <option value="{$key}" >{$vo}</option>
+                {/volist}
+            </select>
+        </td>
+        <td> <select name="require[]" lay-filter="require" lay-verify="" lay-search>
+            <option value="">{:lang('选择')}</option>
+            <option value="0" >否</option>
+            <option value="1" >是</option>
+        </select>
+        </td>
+        <td><input name="length[]" class="layui-input" type="text" ></td></td>
+        <td><input name="default[]" class="layui-input" type="text" ></td></td>
+        <td><select name="index[]" lay-filter="index" lay-verify="" lay-search>
+            <option value="">{:lang('选择')}</option>
+            {volist name="indexList" id="vo"}
+                <option value="{$key}" >{$vo}({$key})</option>
+            {/volist}
+        </td>
+        <td><input name="comment[]" class="layui-input" type="text" ></td>
+        <td>
+            <button class="layui-btn layui-btn-danger" lay-event="del">删除</button>
+        </td>
+    </tr>
+</script>

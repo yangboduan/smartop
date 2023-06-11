@@ -1,0 +1,42 @@
+<form class="layui-form" lay-filter="form">
+    {:form_input('field','text',['label'=>"字段名",'verify'=>'required','tips'=>"字段名"])}
+    <div class="layui-form-item">
+        <label class="layui-form-label">{:lang('字段类型')}</label>
+        <div class="layui-input-block">
+            <select name="type" lay-filter="type" lay-verify="required" lay-search>
+                <option>{:lang('选择')}</option>
+                {volist name="datatypeList" id="vo"}
+                    <option value="{$key}" >{$vo}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    {:form_text('length',['label'=>"数据长度或值（set enum）"]) }
+    <div class="layui-form-item" id="index">
+        <label class="layui-form-label">索引</label>
+        <div class="layui-input-block ">
+            <select name="index" lay-filter="index" lay-verify="" lay-search>
+                <option>{:lang('选择')}</option>
+                {volist name="indexList" id="vo"}
+                    <option  value="{$key}" >{$vo}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    {:form_radio('required',['NO','Yes'],['label'=>"是否必填"],0) }
+    {:form_text('default',['label'=>"默认值"]) }
+    {:form_textarea('extra',['label'=>"枚举或set集合可选值",'placeholder'=>"键值对的形式,一行一组 a:b"]) }
+    {:form_text('comment',['label'=>"备注"]) }
+    <div class="layui-form-item" id="index">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block ">
+            <select name="after" lay-filter="index" lay-verify="" lay-search>
+                <option value="">{:lang('选择')}</option>
+                {volist name="fieldList" id="vo"}
+                    <option  value="{$vo.COLUMN_NAME}" >排在{$vo.COLUMN_NAME}之后</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    {:form_submitbtn() }
+</form>
