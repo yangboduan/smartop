@@ -1,0 +1,32 @@
+<form class="layui-form" lay-filter="form">
+    {:form_input('name', 'text', ['label' => 'Name', 'verify' => ''], '')}
+{:form_input('ip', 'text', ['label' => 'Ip', 'verify' => '','disabled'=>true], '')}
+{:form_input('mac', 'text', ['label' => 'Mac', 'verify' => '','disabled'=>true], '')}
+{:form_input('user', 'text', ['label' => 'User', 'verify' => ''], '')}
+{:form_select('online_status',
+                            ['在线'=>'在线',
+                            '离线'=>'离线',                           
+                           ],
+                            ['label'=>'在线状态','search'=>1])
+}
+{:form_select('type',
+                            ['PC'=>'PC',
+                            '交换机'=>'交换机',
+                            '防火墙'=>'防火墙',
+							'服务器'=>'服务器',
+                           ],
+                            ['label'=>'类型','search'=>1])
+}
+{:form_select('department',
+                            ['研发'=>'研发',
+                            '测试'=>'测试',
+                            '营销'=>'营销',
+							'运维'=>'运维',
+                           ],
+                            ['label'=>'部门','search'=>1])
+}
+
+
+    {:form_submitbtn()}
+</form>
+

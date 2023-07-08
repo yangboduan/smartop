@@ -13,6 +13,7 @@ define(['table','form'], function (Table,Form) {
                     import_url:'resource/Device/import',
                     export_url:'resource/Device/export',
                     modify_url:'resource/Device/modify',
+				
 
                 }
             }
@@ -23,7 +24,7 @@ define(['table','form'], function (Table,Form) {
 				
                 init: Table.init,
                 primaryKey:'id',
-                toolbar: ['refresh','add','destroy','import','export'],
+                toolbar: ['refresh','add','destroy','import','export','mytest'],
                 cols: [[
                     {checkbox: true,},
                     {field:'ip', title: __('Ip'),align: 'center'},
@@ -43,7 +44,7 @@ define(['table','form'], function (Table,Form) {
                         title: __("Operat"),
                         init: Table.init,
                         templet: Table.templet.operat,
-                        operat:["edit"]
+                        operat:["edit","mytest"]
                     },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100,500],

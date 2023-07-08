@@ -1,0 +1,35 @@
+<form class="layui-form" lay-filter="form">
+    {:form_input('name', 'text', ['label' => 'Name', 'verify' => '','disabled'=>true], '')}
+{:form_input('ip', 'text', ['label' => 'Ip', 'verify' => '','disabled'=>true], '')}
+{:form_input('mac', 'text', ['label' => 'Mac', 'verify' => '','disabled'=>true], '')}
+{:form_select('os_type',
+                            ['Linux'=>'Linux',
+                            'Windows'=>'Windows',                           
+                           ],
+                            ['label'=>'系统类型','search'=>1])
+}
+{:form_input('user', 'text', ['label' => 'User', 'verify' => ''], '')}
+{:form_select('department',
+                            ['研发'=>'研发',
+                            '测试'=>'测试',
+                            '营销'=>'营销',
+							'运维'=>'运维',
+                            ],
+                            ['label'=>'部门','search'=>1])
+}
+{:form_input('use_desc', 'text', ['label' => '用途', 'verify' => ''], '')}
+
+{:form_select('device_type',
+                            ['PC'=>'PC',
+                            '交换机'=>'交换机',
+                            '防火墙'=>'防火墙',
+							'服务器'=>'服务器',
+                           ],
+                            ['label'=>'类型','search'=>1])
+}
+
+
+
+    {:form_submitbtn()}
+</form>
+

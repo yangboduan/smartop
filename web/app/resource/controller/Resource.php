@@ -28,7 +28,6 @@ class Resource extends \app\common\controller\Backend
 
     
 
-    
 
 }
 
